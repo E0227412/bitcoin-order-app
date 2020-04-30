@@ -1,6 +1,7 @@
 language: node_js
-node_js: 
+node_js:
   - node
+
 dist: bionic
 sudo: required
 
@@ -13,14 +14,11 @@ notifications:
 
 branches:
   only:
-   - master
-
+   - development
 before_script:
   - npm install -g @angular/cli
-  - npm audit fix
-  
+  - npm install -g now
 script:
-  - ng lint
   - ng build --prod --base-href https://E0227412.github.io/bitcoin-order-app/
 
 deploy:
@@ -28,5 +26,5 @@ deploy:
   skip_cleanup: true
   github_token: $GITHUB_TOKEN
   local_dir: dist/bitcoin
-  on: 
-   branch: master
+  on:
+    branch: development
